@@ -1,0 +1,287 @@
+<div class="relative flex gap-8 p-6 bg-gray-900 text-gray-100 min-h-screen">
+
+  <div class="w-3/4">
+
+    <h1 class="text-3xl font-bold mb-8">
+      Altar do Peregrino - Coleções
+    </h1>
+
+    @for (col of collections; track col.id) {
+
+    <div
+      class="mb-6 border rounded-xl shadow bg-gray-800 border-gray-700 transition-all duration-500"
+      [ngClass]="{
+        'ring-2 ring-green-500 scale-[1.01]': getProgress(col) === 100,
+        'ring-2 ring-yellow-500': getProgress(col) >= 60 && getProgress(col) < 100,
+        'ring-2 ring-orange-500': getProgress(col) >= 30 && getProgress(col) < 60
+      }"
+    >
+
+      <div class="flex items-center">
+
+        <button
+          (click)="toggle(col)"
+          class="flex-1 flex justify-between items-center px-5 py-4 bg-gray-700 hover:bg-gray-600 transition rounded-t-xl">
+
+          <div class="flex items-center gap-3 flex-wrap">
+
+            <span class="font-semibold text-lg">
+              {{ col.title }}
+            </span>
+
+            <span class="text-sm font-medium text-blue-400">
+              ({{ getProgress(col) }}%)
+            </span>
+
+            @if (getProgress(col) >= 100) {
+              <span class="bg-green-600 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                100% Completo
+              </span>
+            } @else if (getProgress(col) >= 60) {
+              <span class="bg-yellow-500 text-black text-xs px-2 py-1 rounded-full animate-bounce">
+                60% 
+              </span>
+            } @else if (getProgress(col) >= 30) {
+              <span class="bg-orange-500 text-black text-xs px-2 py-1 rounded-full animate-pulse">
+                30% 
+              </span>
+            }
+
+          </div>
+
+          <div class="text-blue-400 font-bold text-xl">
+            {{ col.open ? '−' : '+' }}
+          </div>
+
+        </button>
+
+        <button
+          (click)="resetCollection(col)"
+          class="px-4 text-red-400 hover:text-red-600 font-semibold transition"
+          title="Resetar coleção">
+          ↺
+        </button>
+
+      </div>
+
+      @if (col.open) {
+
+      <div class="p-5 border-t border-gray-700">
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          @for (item of col.items; track item.id) {
+
+          <div class="relative">
+
+            <label class="block text-sm font-medium mb-1 text-gray-200">
+              {{ item.name }}
+              <span class="text-gray-400">
+                ({{ item.required }})
+              </span>
+            </label>
+
+            <div class="flex gap-2">
+
+              <input
+                type="number"
+                min="0"
+                [max]="item.required"
+                [(ngModel)]="item.owned"
+                (ngModelChange)="updateValue(col, item)" 
+                [disabled]="isSlotCompleted(item)"
+                class="flex-1 border rounded-lg px-3 py-2 transition focus:outline-none"
+                [ngClass]="{
+                  'bg-green-900 border-green-600 text-green-300': isSlotCompleted(item),
+                  'bg-gray-700 border-gray-600 text-white': !isSlotCompleted(item)
+                }"
+              />
+
+              @if (!isSlotCompleted(item)) {
+                <button
+                  (click)="completeItem(col, item)"
+                  type="button"
+                  class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-semibold transition">
+                  100%
+                </button>
+              }
+
+            </div>
+
+            @if (isSlotCompleted(item)) {
+              <span class="absolute right-2 top-8 text-green-400 font-bold animate-pulse">
+                ✔
+              </span>
+            }
+
+          </div>
+
+          }
+
+        </div>
+
+        <div class="mt-6">
+
+          <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden shadow-inner">
+
+            <div
+              class="h-6 rounded-full transition-all duration-700 flex items-center justify-center text-xs font-medium"
+              [ngClass]="{
+                'bg-orange-500': getProgress(col) >= 30 && getProgress(col) < 60,
+                'bg-yellow-500 text-black': getProgress(col) >= 60 && getProgress(col) < 100,
+                'bg-green-600 animate-pulse': getProgress(col) === 100,
+                'bg-blue-600': getProgress(col) < 30
+              }"
+              [style.width.%]="getProgress(col)"
+            >
+              {{ getProgress(col) }}%
+            </div>
+
+          </div>
+
+          <div class="flex justify-between text-xs mt-2 text-gray-400">
+            <span [class.text-green-400]="getProgress(col) >= 30">30%</span>
+            <span [class.text-green-400]="getProgress(col) >= 60">60%</span>
+            <span [class.text-green-400]="getProgress(col) >= 100">100%</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      }
+
+    </div>
+
+    }
+
+  </div>
+
+
+  <div class="w-1/4">
+
+    <div class="sticky top-24 space-y-6">
+
+      <div class="bg-gray-800 p-5 rounded-xl shadow border border-gray-700">
+
+        <h2 class="text-xl font-bold mb-4 text-white">
+          Bônus Ativos
+        </h2>
+
+        @if (activeBonuses.length === 0) {
+
+          <div class="text-gray-500 text-sm">
+            Nenhum bônus ativo ainda
+          </div>
+
+        } @else {
+
+          @for (bonus of activeBonuses; track bonus.type) {
+
+          <div
+            class="bg-gray-700 p-3 rounded-lg border border-gray-600 flex justify-between items-center mb-3 transition-all duration-500"
+            [ngClass]="{
+              'ring-2 ring-green-400 animate-pulse': bonus.justUnlocked
+            }">
+
+            <span class="text-sm text-gray-200">
+              {{ bonus.type }}
+            </span>
+
+            <span class="font-bold text-green-400">
+              +{{ bonus.value }}
+            </span>
+
+          </div>
+
+          }
+
+        }
+
+      </div>
+
+      <button
+        (click)="toggleDrawer()"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow font-semibold transition">
+        📦 Abrir Estoque
+      </button>
+
+    </div>
+
+  </div>
+
+
+  @if (drawerOpen) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-60 z-40"
+      (click)="toggleDrawer()">
+    </div>
+  }
+
+
+  <div
+    class="fixed top-0 right-0 h-screen w-1/2 bg-gray-900 shadow-2xl z-50 transform transition-transform duration-300 flex flex-col"
+    [ngClass]="{
+      'translate-x-0': drawerOpen,
+      'translate-x-full': !drawerOpen
+    }">
+
+    <div class="p-6 flex justify-between items-center border-b border-gray-700">
+
+      <h2 class="text-xl font-bold text-white">
+        📦 Estoque do Jogador
+      </h2>
+
+      <button
+        (click)="toggleDrawer()"
+        class="text-gray-400 hover:text-red-400 text-lg">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="p-6 flex-1 overflow-y-auto">
+
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+
+        @for (itemName of stockItemNames; track itemName) {
+
+        <div>
+
+          <label class="block text-sm font-medium mb-1 text-gray-200">
+            {{ itemName }}
+          </label>
+
+          <input
+            type="number"
+            min="0"
+            [(ngModel)]="stock[itemName]"
+            (ngModelChange)="updateStockLevel(itemName, stock[itemName])"
+            class="w-full border rounded-lg px-3 py-2 bg-gray-700 border-gray-600 text-white"
+          />
+
+          <div class="text-sm mt-1">
+            @if (syncStockBalance(itemName); as balance) {
+               @if (getStockBalance(itemName) < 0) {
+                <span class="text-red-500 font-semibold">
+                  Faltam: {{ getAbs(getStockBalance(itemName)) }}
+                </span>
+              } @else {
+                <span class="text-gray-500">
+                  Saldo: {{ getStockBalance(itemName) }}
+                </span>
+              }
+            }
+          </div>
+
+        </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,342 @@
+[
+  {
+    "_id": "troglo-1",
+    "id": "troglo-1",
+    "title": "O Segredo dos Troglos I",
+    "open": false,
+    "items": [
+      { "id": "t1-1", "name": "Fruta Dourada do Troglo (50)", "stockKey": "Fruta Dourada do Troglo", "required": 50, "owned": 0 },
+      { "id": "t1-2", "name": "Fruta Dourada do Troglo (150)", "stockKey": "Fruta Dourada do Troglo", "required": 150, "owned": 0 },
+      { "id": "t1-3", "name": "Fruta Dourada do Troglo (300)", "stockKey": "Fruta Dourada do Troglo", "required": 300, "owned": 0 },
+      { "id": "t1-4", "name": "Núcleo de Aprimoramento (Alto) (400)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 400, "owned": 0 },
+      { "id": "t1-5", "name": "Núcleo de Aprimoramento (Altíssimo) (200)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 200, "owned": 0 },
+      { "id": "t1-6", "name": "Núcleo de Aprimoramento (Extremo) (100)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 100, "owned": 0 },
+      { "id": "t1-7", "name": "Núcleo do Caos (200)", "stockKey": "Núcleo do Caos", "required": 200, "owned": 0 },
+      { "id": "t1-8", "name": "Fruta Obsidiana do Troglo (30)", "stockKey": "Fruta Obsidiana do Troglo", "required": 30, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 13, "60": 27, "100": 55 } }
+    ]
+  },
+  {
+    "_id": "troglo-2",
+    "id": "troglo-2",
+    "title": "O Segredo dos Troglos II",
+    "open": false,
+    "items": [
+      { "id": "t2-1", "name": "Fruta Dourada do Troglo (50)", "stockKey": "Fruta Dourada do Troglo", "required": 50, "owned": 0 },
+      { "id": "t2-2", "name": "Fruta Dourada do Troglo (150)", "stockKey": "Fruta Dourada do Troglo", "required": 150, "owned": 0 },
+      { "id": "t2-3", "name": "Fruta Dourada do Troglo (300)", "stockKey": "Fruta Dourada do Troglo", "required": 300, "owned": 0 },
+      { "id": "t2-4", "name": "Núcleo Arcano (Alto) (500)", "stockKey": "Núcleo Arcano (Alto)", "required": 500, "owned": 0 },
+      { "id": "t2-5", "name": "Núcleo Arcano (Altíssimo) (400)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 400, "owned": 0 },
+      { "id": "t2-6", "name": "Núcleo Arcano (Extremo) (300)", "stockKey": "Núcleo Arcano (Extremo)", "required": 300, "owned": 0 },
+      { "id": "t2-7", "name": "Pedra Divina (200)", "stockKey": "Pedra Divina", "required": 200, "owned": 0 },
+      { "id": "t2-8", "name": "Fruta Obsidiana do Troglo (30)", "stockKey": "Fruta Obsidiana do Troglo", "required": 30, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "HP", "values": { "30": 37, "60": 75, "100": 150 } }
+    ]
+  },
+  {
+    "_id": "elemento-gelo",
+    "id": "elemento-gelo",
+    "title": "Cavando Gelo",
+    "open": false,
+    "items": [
+      { "id": "gelo-1", "name": "Gema do Gelo (50)", "stockKey": "Gema do Gelo", "required": 50, "owned": 0 },
+      { "id": "gelo-2", "name": "Pedra do Gelo (120)", "stockKey": "Pedra do Gelo", "required": 120, "owned": 0 },
+      { "id": "gelo-3", "name": "Cristal do Gelo (60)", "stockKey": "Cristal do Gelo", "required": 60, "owned": 0 },
+      { "id": "gelo-4", "name": "Núcleo de Aprimoramento (Altíssimo) (100)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "gelo-5", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "gelo-6", "name": "Núcleo Arcano (Altíssimo) (200)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 200, "owned": 0 },
+      { "id": "gelo-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 },
+      { "id": "gelo-8", "name": "Núcleo de Aprimoramento (Altíssimo) (300)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 300, "owned": 0 },
+      { "id": "gelo-9", "name": "Núcleo de Aprimoramento (Extremo) (150)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 150, "owned": 0 },
+      { "id": "gelo-10", "name": "Núcleo Arcano (Altíssimo) (600)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 600, "owned": 0 },
+      { "id": "gelo-11", "name": "Núcleo Arcano (Extremo) (300)", "stockKey": "Núcleo Arcano (Extremo)", "required": 300, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 17, "60": 35, "100": 70 } }
+    ]
+  },
+  {
+    "_id": "elemento-terra",
+    "id": "elemento-terra",
+    "title": "Subindo a Terra",
+    "open": false,
+    "items": [
+      { "id": "terra-1", "name": "Gema da Terra (50)", "stockKey": "Gema da Terra", "required": 50, "owned": 0 },
+      { "id": "terra-2", "name": "Pedra da Terra (120)", "stockKey": "Pedra da Terra", "required": 120, "owned": 0 },
+      { "id": "terra-3", "name": "Cristal da Terra (60)", "stockKey": "Cristal da Terra", "required": 60, "owned": 0 },
+      { "id": "terra-4", "name": "Núcleo de Aprimoramento (Altíssimo) (100)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "terra-5", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "terra-6", "name": "Núcleo Arcano (Altíssimo) (200)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 200, "owned": 0 },
+      { "id": "terra-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 },
+      { "id": "terra-8", "name": "Núcleo de Aprimoramento (Altíssimo) (300)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 300, "owned": 0 },
+      { "id": "terra-9", "name": "Núcleo de Aprimoramento (Extremo) (150)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 150, "owned": 0 },
+      { "id": "terra-10", "name": "Núcleo Arcano (Altíssimo) (600)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 600, "owned": 0 },
+      { "id": "terra-11", "name": "Núcleo Arcano (Extremo) (300)", "stockKey": "Núcleo Arcano (Extremo)", "required": 300, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Ignorar Perfuração", "values": { "30": 11, "60": 22, "100": 45 } }
+    ]
+  },
+  {
+    "_id": "elemento-fogo",
+    "id": "elemento-fogo",
+    "title": "Acendendo o Fogo",
+    "open": false,
+    "items": [
+      { "id": "fogo-1", "name": "Gema do Fogo (50)", "stockKey": "Gema do Fogo", "required": 50, "owned": 0 },
+      { "id": "fogo-2", "name": "Pedra do Fogo (120)", "stockKey": "Pedra do Fogo", "required": 120, "owned": 0 },
+      { "id": "fogo-3", "name": "Cristal do Fogo (60)", "stockKey": "Cristal do Fogo", "required": 60, "owned": 0 },
+      { "id": "fogo-4", "name": "Núcleo de Aprimoramento (Altíssimo) (100)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "fogo-5", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "fogo-6", "name": "Núcleo Arcano (Altíssimo) (200)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 200, "owned": 0 },
+      { "id": "fogo-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 },
+      { "id": "fogo-8", "name": "Núcleo de Aprimoramento (Altíssimo) (300)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 300, "owned": 0 },
+      { "id": "fogo-9", "name": "Núcleo de Aprimoramento (Extremo) (150)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 150, "owned": 0 },
+      { "id": "fogo-10", "name": "Núcleo Arcano (Altíssimo) (600)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 600, "owned": 0 },
+      { "id": "fogo-11", "name": "Núcleo Arcano (Extremo) (300)", "stockKey": "Núcleo Arcano (Extremo)", "required": 300, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Ignorar Perfuração", "values": { "30": 11, "60": 22, "100": 45 } }
+    ]
+  },
+  {
+    "_id": "elemento-vento",
+    "id": "elemento-vento",
+    "title": "Preenchendo o Vento",
+    "open": false,
+    "items": [
+      { "id": "vento-1", "name": "Gema do Vento (50)", "stockKey": "Gema do Vento", "required": 50, "owned": 0 },
+      { "id": "vento-2", "name": "Pedra do Vento (120)", "stockKey": "Pedra do Vento", "required": 120, "owned": 0 },
+      { "id": "vento-3", "name": "Cristal do Vento (60)", "stockKey": "Cristal do Vento", "required": 60, "owned": 0 },
+      { "id": "vento-4", "name": "Núcleo de Aprimoramento (Altíssimo) (100)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "vento-5", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "vento-6", "name": "Núcleo Arcano (Altíssimo) (200)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 200, "owned": 0 },
+      { "id": "vento-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 },
+      { "id": "vento-8", "name": "Núcleo de Aprimoramento (Altíssimo) (300)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 300, "owned": 0 },
+      { "id": "vento-9", "name": "Núcleo de Aprimoramento (Extremo) (150)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 150, "owned": 0 },
+      { "id": "vento-10", "name": "Núcleo Arcano (Altíssimo) (600)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 600, "owned": 0 },
+      { "id": "vento-11", "name": "Núcleo Arcano (Extremo) (300)", "stockKey": "Núcleo Arcano (Extremo)", "required": 300, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 17, "60": 35, "100": 70 } }
+    ]
+  },
+  {
+    "_id": "cm-intro-1",
+    "id": "cm-intro-1",
+    "title": "Introdução ao Chefe Mundial I",
+    "open": false,
+    "items": [
+      { "id": "cm1-1", "name": "Extensor de Slot (Baixo) (5)", "stockKey": "Extensor de Slot (Baixo)", "required": 5, "owned": 0 },
+      { "id": "cm1-2", "name": "Núcleo de Aprimoramento (Médio) (50)", "stockKey": "Núcleo de Aprimoramento (Médio)", "required": 50, "owned": 0 },
+      { "id": "cm1-3", "name": "Núcleo Arcano (Médio) (100)", "stockKey": "Núcleo Arcano (Médio)", "required": 100, "owned": 0 },
+      { "id": "cm1-4", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cm1-5", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 },
+      { "id": "cm1-6", "name": "Token do Retaliador (20)", "stockKey": "Token do Retaliador", "required": 20, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "HP", "values": { "30": 25, "60": 50, "100": 100 } }
+    ]
+  },
+  {
+    "_id": "cm-intro-2",
+    "id": "cm-intro-2",
+    "title": "Introdução ao Chefe Mundial II",
+    "open": false,
+    "items": [
+      { "id": "cm2-1", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cm2-2", "name": "Extensor de Slot (Baixo) (10)", "stockKey": "Extensor de Slot (Baixo)", "required": 10, "owned": 0 },
+      { "id": "cm2-3", "name": "Núcleo de Aprimoramento (Médio) (50)", "stockKey": "Núcleo de Aprimoramento (Médio)", "required": 50, "owned": 0 },
+      { "id": "cm2-4", "name": "Núcleo Arcano (Médio) (100)", "stockKey": "Núcleo Arcano (Médio)", "required": 100, "owned": 0 },
+      { "id": "cm2-5", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cm2-6", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "HP", "values": { "30": 25, "60": 50, "100": 100 } }
+    ]
+  },
+  {
+    "_id": "cm-intro-3",
+    "id": "cm-intro-3",
+    "title": "Introdução ao Chefe Mundial III",
+    "open": false,
+    "items": [
+      { "id": "cm3-1", "name": "Token do Retaliador (20)", "stockKey": "Token do Retaliador", "required": 20, "owned": 0 },
+      { "id": "cm3-2", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cm3-3", "name": "Extensor de Slot (Baixo) (15)", "stockKey": "Extensor de Slot (Baixo)", "required": 15, "owned": 0 },
+      { "id": "cm3-4", "name": "Núcleo de Aprimoramento (Médio) (50)", "stockKey": "Núcleo de Aprimoramento (Médio)", "required": 50, "owned": 0 },
+      { "id": "cm3-5", "name": "Núcleo Arcano (Médio) (100)", "stockKey": "Núcleo Arcano (Médio)", "required": 100, "owned": 0 },
+      { "id": "cm3-6", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cm3-7", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Redução de Danos", "values": { "30": 5, "60": 10, "100": 20 } }
+    ]
+  },
+  {
+    "_id": "cm-intro-4",
+    "id": "cm-intro-4",
+    "title": "Introdução ao Chefe Mundial IV",
+    "open": false,
+    "items": [
+      { "id": "cm4-1", "name": "Token do Retaliador (20)", "stockKey": "Token do Retaliador", "required": 20, "owned": 0 },
+      { "id": "cm4-2", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cm4-3", "name": "Extensor de Slot (Baixo) (20)", "stockKey": "Extensor de Slot (Baixo)", "required": 20, "owned": 0 },
+      { "id": "cm4-4", "name": "Núcleo de Aprimoramento (Médio) (50)", "stockKey": "Núcleo de Aprimoramento (Médio)", "required": 50, "owned": 0 },
+      { "id": "cm4-5", "name": "Núcleo Arcano (Médio) (100)", "stockKey": "Núcleo Arcano (Médio)", "required": 100, "owned": 0 },
+      { "id": "cm4-6", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cm4-7", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Redução de Danos", "values": { "30": 5, "60": 10, "100": 20 } }
+    ]
+  },
+  {
+    "_id": "cm-patrulha-1",
+    "id": "cm-patrulha-1",
+    "title": "Patrulha do Chefe Mundial I",
+    "open": false,
+    "items": [
+      { "id": "cp1-1", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cp1-2", "name": "Token do Retaliador (50)", "stockKey": "Token do Retaliador", "required": 50, "owned": 0 },
+      { "id": "cp1-3", "name": "Extensor de Slot (Médio) (2)", "stockKey": "Extensor de Slot (Médio)", "required": 2, "owned": 0 },
+      { "id": "cp1-4", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cp1-5", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 },
+      { "id": "cp1-6", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "cp1-7", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Redução de Danos", "values": { "30": 5, "60": 10, "100": 20 } }
+    ]
+  },
+  {
+    "_id": "cm-patrulha-2",
+    "id": "cm-patrulha-2",
+    "title": "Patrulha do Chefe Mundial II",
+    "open": false,
+    "items": [
+      { "id": "cp2-1", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cp2-2", "name": "Token do Retaliador (50)", "stockKey": "Token do Retaliador", "required": 50, "owned": 0 },
+      { "id": "cp2-3", "name": "Extensor de Slot (Médio) (4)", "stockKey": "Extensor de Slot (Médio)", "required": 4, "owned": 0 },
+      { "id": "cp2-4", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cp2-5", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 },
+      { "id": "cp2-6", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "cp2-7", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Redução de Danos", "values": { "30": 5, "60": 10, "100": 20 } }
+    ]
+  },
+  {
+    "_id": "cm-patrulha-3",
+    "id": "cm-patrulha-3",
+    "title": "Patrulha do Chefe Mundial III",
+    "open": false,
+    "items": [
+      { "id": "cp3-1", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cp3-2", "name": "Token do Retaliador (50)", "stockKey": "Token do Retaliador", "required": 50, "owned": 0 },
+      { "id": "cp3-3", "name": "Extensor de Slot (Médio) (6)", "stockKey": "Extensor de Slot (Médio)", "required": 6, "owned": 0 },
+      { "id": "cp3-4", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cp3-5", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 },
+      { "id": "cp3-6", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "cp3-7", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 10, "60": 20, "100": 40 } }
+    ]
+  },
+  {
+    "_id": "cm-patrulha-4",
+    "id": "cm-patrulha-4",
+    "title": "Patrulha do Chefe Mundial IV",
+    "open": false,
+    "items": [
+      { "id": "cp4-1", "name": "Token do Retaliador (30)", "stockKey": "Token do Retaliador", "required": 30, "owned": 0 },
+      { "id": "cp4-2", "name": "Token do Retaliador (50)", "stockKey": "Token do Retaliador", "required": 50, "owned": 0 },
+      { "id": "cp4-3", "name": "Extensor de Slot (Médio) (8)", "stockKey": "Extensor de Slot (Médio)", "required": 8, "owned": 0 },
+      { "id": "cp4-4", "name": "Núcleo de Aprimoramento (Alto) (50)", "stockKey": "Núcleo de Aprimoramento (Alto)", "required": 50, "owned": 0 },
+      { "id": "cp4-5", "name": "Núcleo Arcano (Alto) (100)", "stockKey": "Núcleo Arcano (Alto)", "required": 100, "owned": 0 },
+      { "id": "cp4-6", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "cp4-7", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 10, "60": 20, "100": 40 } }
+    ]
+  },
+  {
+    "_id": "cm-estrategia-1",
+    "id": "cm-estrategia-1",
+    "title": "Estratégia do Chefe Mundial I",
+    "open": false,
+    "items": [
+      { "id": "ce1-1", "name": "Token do Retaliador (40)", "stockKey": "Token do Retaliador", "required": 40, "owned": 0 },
+      { "id": "ce1-2", "name": "Token do Retaliador (80)", "stockKey": "Token do Retaliador", "required": 80, "owned": 0 },
+      { "id": "ce1-3", "name": "Extensor de Slot (Alto) (1)", "stockKey": "Extensor de Slot (Alto)", "required": 1, "owned": 0 },
+      { "id": "ce1-4", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "ce1-5", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "ce1-6", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "ce1-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 10, "60": 20, "100": 40 } }
+    ]
+  },
+  {
+    "_id": "cm-estrategia-2",
+    "id": "cm-estrategia-2",
+    "title": "Estratégia do Chefe Mundial II",
+    "open": false,
+    "items": [
+      { "id": "ce2-1", "name": "Token do Retaliador (40)", "stockKey": "Token do Retaliador", "required": 40, "owned": 0 },
+      { "id": "ce2-2", "name": "Token do Retaliador (80)", "stockKey": "Token do Retaliador", "required": 80, "owned": 0 },
+      { "id": "ce2-3", "name": "Extensor de Slot (Alto) (1)", "stockKey": "Extensor de Slot (Alto)", "required": 1, "owned": 0 },
+      { "id": "ce2-4", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "ce2-5", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "ce2-6", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "ce2-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Defesa", "values": { "30": 10, "60": 20, "100": 40 } }
+    ]
+  },
+  {
+    "_id": "cm-estrategia-3",
+    "id": "cm-estrategia-3",
+    "title": "Estratégia do Chefe Mundial III",
+    "open": false,
+    "items": [
+      { "id": "ce3-1", "name": "Token do Retaliador (40)", "stockKey": "Token do Retaliador", "required": 40, "owned": 0 },
+      { "id": "ce3-2", "name": "Token do Retaliador (80)", "stockKey": "Token do Retaliador", "required": 80, "owned": 0 },
+      { "id": "ce3-3", "name": "Extensor de Slot (Alto) (2)", "stockKey": "Extensor de Slot (Alto)", "required": 2, "owned": 0 },
+      { "id": "ce3-4", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "ce3-5", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "ce3-6", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "ce3-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Ignorar Perfuração", "values": { "30": 7, "60": 15, "100": 30 } }
+    ]
+  },
+  {
+    "_id": "cm-estrategia-4",
+    "id": "cm-estrategia-4",
+    "title": "Estratégia do Chefe Mundial IV",
+    "open": false,
+    "items": [
+      { "id": "ce4-1", "name": "Token do Retaliador (40)", "stockKey": "Token do Retaliador", "required": 40, "owned": 0 },
+      { "id": "ce4-2", "name": "Token do Retaliador (80)", "stockKey": "Token do Retaliador", "required": 80, "owned": 0 },
+      { "id": "ce4-3", "name": "Extensor de Slot (Alto) (2)", "stockKey": "Extensor de Slot (Alto)", "required": 2, "owned": 0 },
+      { "id": "ce4-4", "name": "Núcleo de Aprimoramento (Altíssimo) (50)", "stockKey": "Núcleo de Aprimoramento (Altíssimo)", "required": 50, "owned": 0 },
+      { "id": "ce4-5", "name": "Núcleo Arcano (Altíssimo) (100)", "stockKey": "Núcleo Arcano (Altíssimo)", "required": 100, "owned": 0 },
+      { "id": "ce4-6", "name": "Núcleo de Aprimoramento (Extremo) (50)", "stockKey": "Núcleo de Aprimoramento (Extremo)", "required": 50, "owned": 0 },
+      { "id": "ce4-7", "name": "Núcleo Arcano (Extremo) (100)", "stockKey": "Núcleo Arcano (Extremo)", "required": 100, "owned": 0 }
+    ],
+    "rewards": [
+      { "type": "PVE Res. Danos Críticos", "values": { "30": 1, "60": 3, "100": 7 } }
+    ]
+  }
+]

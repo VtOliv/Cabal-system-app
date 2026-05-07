@@ -1,0 +1,381 @@
+﻿<div class="h-full flex gap-3 overflow-hidden">
+
+  <!-- ── Menu Lateral de Quadrantes ── -->
+  <div class="w-36 shrink-0 flex flex-col gap-1 overflow-y-auto pr-0.5">
+    @for (grupo of grupos; track grupo.id) {
+      <button (click)="grupoAtivoId = grupo.id"
+        class="w-full text-left rounded-lg px-3 py-2.5 flex flex-col gap-1.5 transition-all duration-150 border"
+        [ngClass]="grupoAtivoId === grupo.id
+          ? 'bg-gray-700 border-cyan-600 text-cyan-300'
+          : 'bg-gray-800 border-transparent text-gray-400 hover:bg-gray-750 hover:text-gray-200 hover:border-gray-600'">
+        <!-- Nome -->
+        <span class="text-[11px] font-semibold leading-tight">{{ grupo.nome }}</span>
+        <!-- Progresso checkpoint -->
+        <div class="w-full bg-gray-600/50 rounded-full h-0.5 overflow-hidden">
+          <div class="h-0.5 rounded-full transition-all duration-300"
+               [ngClass]="valor >= expCheckpointGrupo(grupo) ? 'bg-green-500' : 'bg-cyan-500'"
+               [style.width.%]="checkpointPct(grupo)"></div>
+        </div>
+        <!-- Indicadores rápidos -->
+        <div class="flex items-center justify-between">
+          <span class="text-[9px] tabular-nums font-medium"
+                [ngClass]="statusAtivosGrupo(grupo) > 0 ? 'text-cyan-400' : 'text-gray-600'">
+            {{ statusAtivosGrupo(grupo) }}
+            <span class="text-gray-600 font-normal">/ {{ statusTotaisGrupo(grupo) }}</span>
+          </span>
+          @if (statusAtivosGrupo(grupo) > 0) {
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"></span>
+          }
+        </div>
+      </button>
+    }
+  </div>
+
+  <!-- ── Quadrante Ativo ── -->
+  <div class="flex-1 overflow-y-auto pr-1">
+    @let grupo = grupoAtivo;
+    <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-1.5">
+
+      <!-- Cabeçalho -->
+      <div class="flex items-center justify-between mb-1">
+        <h4 class="text-sm font-bold text-cyan-400 uppercase tracking-wide">{{ grupo.nome }}</h4>
+        <button (click)="resetGrupo(grupo)"
+          class="text-xs text-gray-600 hover:text-red-400 transition px-1" title="Resetar quadrante">↺</button>
+      </div>
+
+      <!-- Checkpoint -->
+      <div class="mb-2 px-0.5">
+        <div class="flex justify-between text-[9px] text-gray-500 mb-0.5">
+          <span class="uppercase tracking-wide font-medium">Checkpoint
+            <span class="text-gray-600 normal-case font-normal">({{ pontosTotaisGrupo(grupo) }} pts)</span>
+          </span>
+          <span class="tabular-nums">
+            <span [ngClass]="valor >= expCheckpointGrupo(grupo) ? 'text-green-400' : valor > 0 ? 'text-cyan-400' : 'text-gray-600'">{{ valor | number }}</span>
+            <span class="text-gray-600"> / {{ expCheckpointGrupo(grupo) | number }} EXP</span>
+          </span>
+        </div>
+        <div class="w-full bg-gray-700/60 rounded-full h-1 overflow-hidden">
+          <div class="h-1 rounded-full transition-all duration-300"
+               [ngClass]="valor >= expCheckpointGrupo(grupo) ? 'bg-green-500' : 'bg-cyan-500'"
+               [style.width.%]="checkpointPct(grupo)"></div>
+        </div>
+      </div>
+
+      <!-- Linhas de status -->
+      @for (s of grupo.status; track s.id) {
+        <div class="flex items-center gap-1.5 text-xs py-0.5 border-b border-gray-700/30 last:border-0">
+          <!-- Ícone -->
+          @let icone = iconDeStatus(s.id);
+          @if (icone) {
+            <img [src]="icone" [alt]="s.nome"
+                 class="w-5 h-5 object-contain rounded shrink-0 ring-1"
+                 [ngClass]="{
+                   'ring-yellow-500 opacity-90': s.isEstrela,
+                   'ring-emerald-500': !s.isEstrela && s.tier === 1,
+                   'ring-cyan-500':    !s.isEstrela && s.tier === 2,
+                   'ring-blue-500':    !s.isEstrela && s.tier === 3,
+                   'opacity-40': nivelAtual(s.id) === 0
+                 }" />
+          } @else {
+            @if (s.isEstrela) {
+              <span class="text-sm leading-none shrink-0">&#11088;</span>
+            } @else {
+              <div class="w-1.5 h-1.5 rounded-full shrink-0"
+                   [ngClass]="{
+                     'bg-emerald-400': s.tier === 1,
+                     'bg-cyan-400':    s.tier === 2,
+                     'bg-blue-500':    s.tier === 3
+                   }"></div>
+            }
+          }
+
+          <!-- Nome + slot info -->
+          <div class="flex-1 min-w-0 flex flex-col">
+            <span class="truncate" [ngClass]="nivelAtual(s.id) > 0 ? 'text-gray-200' : 'text-gray-500'">{{ s.nome }}</span>
+            <span class="text-[9px] leading-none mt-0.5 tabular-nums"
+                  [ngClass]="slotAtivo(s.id) ? 'text-green-700' : 'text-gray-600'"
+                  [title]="'Núcleo do Caos: ' + slotTempo(grupo.id, s.id).caos + ' | Núcleo Divino: ' + slotTempo(grupo.id, s.id).divino">
+              #{{ slotNumero(grupo.id, s.id) }} · {{ slotTempo(grupo.id, s.id).caos }}c {{ slotTempo(grupo.id, s.id).divino }}d · {{ slotTempo(grupo.id, s.id).tempo }}
+            </span>
+          </div>
+
+          <!-- Valor atual / max -->
+          @if (!s.isEstrela) {
+            <span class="shrink-0 text-right font-semibold tabular-nums"
+                  [ngClass]="nivelAtual(s.id) > 0 ? 'text-cyan-300' : 'text-gray-600'">
+              {{ valorAtual(s.id, s.tier, s.valorMax) }}{{ s.unidade }}/{{ s.valorMax }}{{ s.unidade }}
+            </span>
+            @if (nivelAtual(s.id) > 0 && poderPorId(s.id) > 0) {
+              <span class="shrink-0 text-xs text-purple-400 tabular-nums" title="Poder">
+                {{ poderAtualStatus(s.id, s.tier, s.valorMax) | number:'1.0-0' }}p
+              </span>
+            }
+          } @else {
+            <span class="shrink-0 w-16 text-right text-xs font-medium"
+                  [ngClass]="nivelAtual(s.id) > 0 ? 'text-yellow-400' : 'text-gray-500'">
+              {{ s.custo }} pts
+            </span>
+          }
+
+          <!-- Stepper -->
+          <div class="flex items-center gap-0.5 shrink-0">
+            <button (click)="decrementar(s.id, s.tier)"
+              class="w-5 h-5 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 flex items-center justify-center leading-none transition select-none"
+              [class.opacity-25]="nivelAtual(s.id) === 0"
+              [disabled]="nivelAtual(s.id) === 0">−</button>
+            <span class="w-8 text-center text-gray-400 tabular-nums">
+              {{ nivelAtual(s.id) }}/{{ maxNivelDeStatus(s.id, s.tier) }}
+            </span>
+            <button (click)="incrementar(s.id, s.tier)"
+              class="w-5 h-5 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 flex items-center justify-center leading-none transition select-none"
+              [class.opacity-25]="!canIncrement(s.id, s.tier)"
+              [disabled]="!canIncrement(s.id, s.tier)">+</button>
+          </div>
+          @if (s.isEstrela && nivelAtual(s.id) > 0) {
+            <button (click)="rolarEstrela(grupo.id)"
+              class="ml-1 px-2 h-5 rounded bg-yellow-600 hover:bg-yellow-500 text-white text-xs font-semibold transition shrink-0">
+              🎲
+            </button>
+          }
+          @if (temExpandida(s) && nivelAtual(s.id) > 0) {
+            <button (click)="toggleExpandida(s.id, s.tier)"
+              class="ml-1 px-1.5 h-5 rounded text-xs font-semibold transition shrink-0"
+              [ngClass]="isExpandida(s.id)
+                ? 'bg-green-700 hover:bg-green-600 text-green-200'
+                : canExpandir(s.id, s.tier)
+                  ? 'bg-gray-600 hover:bg-gray-500 text-gray-300'
+                  : 'bg-gray-700 text-gray-600 cursor-not-allowed'"
+              [title]="titleExpandida(grupo.id, s.id, s.tier)">
+              EXP
+            </button>
+          }
+        </div>
+      }
+
+      <!-- Maestria (estrela) -->
+      @if (estrelasAtiva(grupo.id) && resultadosEstrela[grupo.id]?.length) {
+        <div class="mt-1.5 p-2 rounded-lg bg-yellow-900/30 border border-yellow-600/40 flex flex-col gap-1.5">
+          <p class="text-xs text-yellow-400 font-bold">&#9733; Maestria - {{ grupo.nome }}</p>
+          @for (r of resultadosEstrela[grupo.id]; track $index) {
+            <div class="flex items-center justify-between text-xs gap-1">
+              <span class="text-gray-200 truncate">{{ r.nome }}</span>
+              <span class="flex items-center gap-1 shrink-0">
+                <span class="text-yellow-400 tracking-tight">{{ '★'.repeat(r.estrelas) }}<span class="text-gray-600">{{ '★'.repeat(6 - r.estrelas) }}</span></span>
+                <span class="font-semibold ml-1" [ngClass]="r.valor !== null ? 'text-cyan-300' : 'text-gray-500'">
+                  @if (r.valor !== null) { {{ r.valor }}{{ r.unidade }} } @else { — }
+                </span>
+              </span>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Totais do quadrante -->
+      <div class="mt-2 pt-2 border-t border-gray-600/60 flex flex-col gap-0.5">
+        @for (t of grupo.totais; track t.nome) {
+          <div class="flex justify-between text-xs">
+            <span class="text-gray-500">{{ t.nome }}</span>
+            <span [ngClass]="totalAtual(t.ids) > 0 ? 'text-cyan-400 font-semibold' : 'text-gray-600'">
+              {{ totalAtual(t.ids) }}{{ t.unidade }}&nbsp;/&nbsp;{{ t.maxTotal }}{{ t.unidade }}
+            </span>
+          </div>
+        }
+        @if (poderTotalGrupo(grupo) > 0) {
+          <div class="flex justify-between text-xs mt-0.5 pt-0.5 border-t border-gray-700/50">
+            <span class="text-gray-500">Poder do quadrante</span>
+            <span class="text-purple-400 font-semibold">{{ poderTotalGrupo(grupo) | number:'1.0-0' }}</span>
+          </div>
+          @if (poderEstrelaGrupo(grupo.id) > 0) {
+            <div class="flex justify-between text-xs">
+              <span class="text-gray-600">↳ Estrela</span>
+              <span class="text-yellow-500 font-semibold">+{{ poderEstrelaGrupo(grupo.id) | number:'1.0-0' }}</span>
+            </div>
+          }
+        }
+        <!-- Tempo de liberação do quadrante -->
+        @if (tempoMinutosGrupo(grupo.id) > 0) {
+          <div class="flex justify-between text-xs mt-0.5">
+            <span class="text-gray-500">Tempo de liberação</span>
+            <span class="text-teal-400 font-semibold">{{ tempoFormatadoGrupo(grupo.id) }}</span>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Painel Direito ── -->
+  <div class="w-60 shrink-0 overflow-y-auto flex flex-col gap-3 pr-1">
+
+    <!-- Progresso -->
+    <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <img src="assets/platina.png" class="w-5 h-5 object-contain" />
+        <span class="text-xs font-bold text-cyan-400 uppercase tracking-wide">Progresso</span>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-400 mb-1">Pontos atuais</label>
+        <input type="number" [(ngModel)]="valor" min="0" [max]="valorMaximo || null"
+          (change)="clampValor()"
+          class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+      </div>
+
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="text-gray-400">Faixa</span>
+          <span class="font-semibold text-cyan-400">{{ valor | number }} / {{ proximoMarco | number }}</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+          <div class="h-2 bg-cyan-400 rounded-full transition-all duration-500" [style.width.%]="porcentagem"></div>
+        </div>
+        <div class="flex justify-between text-xs text-gray-500 mt-0.5">
+          <span>{{ faixaAtual?.de | number }}</span>
+          <span>{{ porcentagem | number:'1.1-1' }}%</span>
+          <span>{{ proximoMarco | number }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+          <p class="text-xs text-gray-400 mb-0.5">Acumulado</p>
+          <p class="text-lg font-bold text-cyan-400">{{ meritoAcumulado }}</p>
+        </div>
+        <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+          <p class="text-xs text-gray-400 mb-0.5">Próx. rec.</p>
+          <p class="text-lg font-bold text-cyan-300">{{ recompensaProxima }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Poder total -->
+    <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-2">
+      <p class="text-xs text-gray-400 uppercase tracking-wider">Poder Total</p>
+      <p class="text-3xl font-bold text-purple-400">{{ poderTotal | number:'1.0-0' }}</p>
+      <div class="flex flex-col gap-1 mt-1">
+        @for (grupo of grupos; track grupo.id) {
+          @if (poderTotalGrupo(grupo) > 0) {
+            <div class="flex justify-between text-xs">
+              <span class="text-gray-500 truncate mr-2">{{ grupo.nome }}</span>
+              <span class="text-purple-300 font-semibold shrink-0">{{ poderTotalGrupo(grupo) | number:'1.0-0' }}</span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <!-- Orçamento de status -->
+    <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-2">
+      <p class="text-xs text-gray-400 uppercase tracking-wider">Orçamento de Status</p>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+          <p class="text-xs text-gray-400 mb-0.5">Disponível</p>
+          <p class="text-lg font-bold"
+             [ngClass]="pontosDisponiveis > 0 ? 'text-cyan-300' : 'text-red-400'">{{ pontosDisponiveis }}</p>
+        </div>
+        <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+          <p class="text-xs text-gray-400 mb-0.5">Gastos</p>
+          <p class="text-lg font-bold text-gray-300">{{ pontosGastos }}</p>
+        </div>
+      </div>
+
+      <div class="w-full bg-gray-700 rounded-full h-1.5 overflow-hidden">
+        <div class="h-1.5 bg-cyan-500 rounded-full transition-all duration-300"
+             [style.width.%]="meritoAcumulado > 0 ? (pontosGastos / meritoAcumulado) * 100 : 0"></div>
+      </div>
+      <p class="text-xs text-gray-500 text-center">{{ pontosGastos }} / {{ meritoAcumulado }} pts utilizados</p>
+    </div>
+
+    <!-- Núcleos para Liberar -->
+    @if (totalCaosGlobal > 0 || totalDivinoGlobal > 0) {
+      <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-2">
+        <p class="text-xs text-gray-400 uppercase tracking-wider">Núcleos para Liberar</p>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+            <p class="text-[10px] text-gray-400 mb-0.5">Núcleo do Caos</p>
+            <p class="text-lg font-bold text-orange-400">{{ totalCaosGlobal }}</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+            <p class="text-[10px] text-gray-400 mb-0.5">Núcleo Divino</p>
+            <p class="text-lg font-bold text-blue-400">{{ totalDivinoGlobal }}</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-0.5 mt-1">
+          @for (grupo of grupos; track grupo.id) {
+            @if (totalCaosGrupo(grupo.id) > 0) {
+              <div class="flex justify-between text-xs">
+                <span class="text-gray-500 truncate mr-2">{{ grupo.nome }}</span>
+                <span class="text-gray-400 shrink-0">{{ totalCaosGrupo(grupo.id) }}c / {{ totalDivinoGrupo(grupo.id) }}d</span>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Somatória de Tempo -->
+    @if (tempoMinutosGlobal > 0) {
+      <div class="bg-gray-800 rounded-lg p-4 flex flex-col gap-2">
+        <p class="text-xs text-gray-400 uppercase tracking-wider">Tempo Total de Liberação</p>
+        <div class="bg-gray-700 rounded-lg p-2.5 text-center">
+          <p class="text-[10px] text-gray-400 mb-0.5">Total acumulado</p>
+          <p class="text-lg font-bold text-teal-400">{{ tempoFormatadoGlobal }}</p>
+        </div>
+        <div class="flex flex-col gap-0.5 mt-1">
+          @for (grupo of grupos; track grupo.id) {
+            @if (tempoMinutosGrupo(grupo.id) > 0) {
+              <div class="flex justify-between text-xs">
+                <span class="text-gray-500 truncate mr-2">{{ grupo.nome }}</span>
+                <span class="text-teal-400 font-semibold shrink-0">{{ tempoFormatadoGrupo(grupo.id) }}</span>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Legenda de tier -->
+    <div class="bg-gray-800 rounded-lg p-3 flex flex-col gap-1.5">
+      <p class="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Custo por nível</p>
+      <div class="flex items-center gap-2 text-xs">
+        <div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+        <span class="text-gray-400 flex-1">Tier I</span>
+        <span class="text-emerald-400 font-semibold">3 pts × 5</span>
+        <span class="text-green-400 text-xs" title="Custo da expandida">EXP 15</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <div class="w-2 h-2 rounded-full bg-cyan-400 shrink-0"></div>
+        <span class="text-gray-400 flex-1">Tier II</span>
+        <span class="text-cyan-400 font-semibold">5 pts × 10</span>
+        <span class="text-green-400 text-xs" title="Custo da expandida">EXP 30</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <div class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></div>
+        <span class="text-gray-400 flex-1">Tier III</span>
+        <span class="text-blue-400 font-semibold">7 pts × 15</span>
+        <span class="text-green-400 text-xs" title="Custo da expandida">EXP 45</span>
+      </div>
+    </div>
+
+    <!-- Resumo de atributos alocados -->
+    @for (grupo of grupos; track grupo.id) {
+      @if (grupoTemAlgumNivel(grupo)) {
+        <div class="bg-gray-800 rounded-lg p-3 flex flex-col gap-1">
+          <p class="text-xs font-bold text-cyan-400 mb-0.5">{{ grupo.nome }}</p>
+          @for (t of grupo.totais; track t.nome) {
+            @if (totalAtual(t.ids) > 0) {
+              <div class="flex justify-between text-xs">
+                <span class="text-gray-400 truncate mr-2">{{ t.nome }}</span>
+                <span class="text-cyan-300 font-semibold shrink-0">
+                  +{{ totalAtual(t.ids) }}{{ t.unidade }}
+                </span>
+              </div>
+            }
+          }
+        </div>
+      }
+    }
+
+  </div>
+</div>

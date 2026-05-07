@@ -1,0 +1,205 @@
+<div class="h-screen flex flex-col bg-gray-900 text-gray-100 overflow-hidden">
+
+  <!-- ===== Header + Abas ===== -->
+  <div class="flex items-center gap-6 px-5 py-2 border-b border-gray-700 shrink-0 bg-gray-900">
+    <h1 class="text-sm font-bold uppercase tracking-widest text-gray-400 shrink-0">Mérito</h1>
+
+    <div class="flex gap-1 flex-1">
+      <button routerLink="dourado" routerLinkActive #rlaD="routerLinkActive"
+        (click)="calculadoraAtiva = false"
+        class="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition"
+        [ngClass]="!calculadoraAtiva && rlaD.isActive
+          ? 'bg-yellow-500/15 text-yellow-400 ring-1 ring-yellow-500/40'
+          : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'">
+        <img src="assets/dourado.png" class="w-4 h-4 object-contain" /> Dourado
+      </button>
+
+      <button routerLink="platina" routerLinkActive #rlaP="routerLinkActive"
+        (click)="calculadoraAtiva = false"
+        class="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition"
+        [ngClass]="!calculadoraAtiva && rlaP.isActive
+          ? 'bg-cyan-500/15 text-cyan-400 ring-1 ring-cyan-500/40'
+          : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'">
+        <img src="assets/platina.png" class="w-4 h-4 object-contain" /> Platina
+      </button>
+
+      <button routerLink="diamante" routerLinkActive #rlaDi="routerLinkActive"
+        (click)="calculadoraAtiva = false"
+        class="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition"
+        [ngClass]="!calculadoraAtiva && rlaDi.isActive
+          ? 'bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/40'
+          : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'">
+        <img src="assets/diamante.png" class="w-4 h-4 object-contain" /> Diamante
+      </button>
+
+      <button (click)="calculadoraAtiva = true"
+        class="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition ml-auto"
+        [ngClass]="calculadoraAtiva
+          ? 'bg-purple-500/15 text-purple-400 ring-1 ring-purple-500/40'
+          : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/>
+          <line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/>
+        </svg>
+        Calculadora
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Conteúdo ===== -->
+  <div class="flex-1 overflow-hidden p-4">
+
+    <!-- Sub-componentes de cada aba via router-outlet -->
+    @if (!calculadoraAtiva) {
+      <router-outlet />
+    }
+
+    <!-- ── Calculadora ── -->
+    @if (calculadoraAtiva) {
+    <div class="h-full flex items-start">
+      <div class="bg-gray-800 rounded-xl shadow w-full flex divide-x divide-gray-700 overflow-hidden" style="max-height:100%">
+
+        <!-- Esquerdo: Completar Mérito -->
+        <div class="flex-1 p-5 flex flex-col gap-4 overflow-y-auto">
+          <div>
+            <h3 class="text-sm font-bold text-purple-400 flex items-center gap-2 mb-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Completar Mérito
+            </h3>
+            <p class="text-xs text-gray-500">Do ponto atual ao fim da tabela.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="col-span-2">
+              <label class="block text-xs text-gray-400 mb-1">Tipo</label>
+              <select [(ngModel)]="calc1Tipo"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition">
+                <option value="dourado">Dourado</option>
+                <option value="platina">Platina</option>
+                <option value="diamante">Diamante</option>
+              </select>
+            </div>
+            <div class="col-span-2">
+              <label class="block text-xs text-gray-400 mb-1">Ponto atual</label>
+              <input type="number" [(ngModel)]="calc1PontoAtual" min="0"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Pts / TKT</label>
+              <input type="number" [(ngModel)]="calc1PontosPorTkt" min="1"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">TKTs / TG</label>
+              <input type="number" [(ngModel)]="calc1TktPorTg" min="1"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-xs text-gray-400 mb-1">WEXP / TKT <span class="text-gray-600">(máx. 125)</span></label>
+              <input type="number" [(ngModel)]="calc1WexpPorTkt" min="1" max="125"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="mt-auto bg-gray-900/60 rounded-xl p-4 flex flex-col gap-2 border border-gray-700">
+            <div class="flex justify-between text-xs text-gray-400">
+              <span>Máx. da tabela</span><span class="text-purple-300 font-semibold">{{ calc1PontoMax | number }}</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400">
+              <span>Pontos restantes</span><span class="text-purple-300 font-semibold">{{ calc1PontosRestantes | number }}</span>
+            </div>
+            <div class="border-t border-gray-700 pt-3 grid grid-cols-3 gap-2 text-center">
+              <div>
+                <p class="text-xl font-bold text-purple-400">{{ calc1TktsNecessarios | number }}</p>
+                <p class="text-xs text-gray-500">TKTs</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-purple-400">{{ calc1TgsNecessarios | number }}</p>
+                <p class="text-xs text-gray-500">TGs</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-purple-300">{{ calc1WexpTotal | number }}</p>
+                <p class="text-xs text-gray-500">WEXP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direito: De X até Y -->
+        <div class="flex-1 p-5 flex flex-col gap-4 overflow-y-auto">
+          <div>
+            <h3 class="text-sm font-bold text-orange-400 flex items-center gap-2 mb-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              De X até Y
+            </h3>
+            <p class="text-xs text-gray-500">De um ponto a outro da tabela.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="col-span-2">
+              <label class="block text-xs text-gray-400 mb-1">Tipo</label>
+              <select [(ngModel)]="calc2Tipo"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition">
+                <option value="dourado">Dourado</option>
+                <option value="platina">Platina</option>
+                <option value="diamante">Diamante</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Ponto inicial (X)</label>
+              <input type="number" [(ngModel)]="calc2PontoInicial" min="0"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Ponto final (Y)</label>
+              <input type="number" [(ngModel)]="calc2PontoFinal" min="0"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Pts / TKT</label>
+              <input type="number" [(ngModel)]="calc2PontosPorTkt" min="1"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">TKTs / TG</label>
+              <input type="number" [(ngModel)]="calc2TktPorTg" min="1"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-xs text-gray-400 mb-1">WEXP / TKT <span class="text-gray-600">(máx. 125)</span></label>
+              <input type="number" [(ngModel)]="calc2WexpPorTkt" min="1" max="125"
+                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white text-sm focus:outline-none focus:border-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="mt-auto bg-gray-900/60 rounded-xl p-4 flex flex-col gap-2 border border-gray-700">
+            <div class="flex justify-between text-xs text-gray-400">
+              <span>Pontos a percorrer</span><span class="text-orange-300 font-semibold">{{ calc2PontosNecessarios | number }}</span>
+            </div>
+            <div class="border-t border-gray-700 pt-3 grid grid-cols-3 gap-2 text-center">
+              <div>
+                <p class="text-xl font-bold text-orange-400">{{ calc2TktsNecessarios | number }}</p>
+                <p class="text-xs text-gray-500">TKTs</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-orange-400">{{ calc2TgsNecessarios | number }}</p>
+                <p class="text-xs text-gray-500">TGs</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-orange-300">{{ calc2WexpTotal | number }}</p>
+                <p class="text-xs text-gray-500">WEXP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    }
+
+  </div>
+</div>
