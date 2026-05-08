@@ -2,11 +2,12 @@ import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Character } from '../models/types';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CharacterService {
   private readonly http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:8097/api/character';
+  private readonly API_URL = `${environment.apiUrl}/api/character`;
 
   // ── Estado global ──────────────────────────────────────────────────────────
   readonly personagens = signal<Character[]>([]);
